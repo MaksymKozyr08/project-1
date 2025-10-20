@@ -1,4 +1,7 @@
 #include <iostream>
+#include <sstream>
+#include <vector>
+#include <algorithm>
 #include <cmath>
 typedef long long ll;
 typedef long double ld;
@@ -9,29 +12,22 @@ typedef unsigned long long ull;
 
 using namespace std;
 
-ld function(ld x){
-    return pow(x,2)-2;
-}
-
-ld function_d(ld x){
-    ld h = 1e-8;
-    return (function(x + h) - function(x)) / h;
-}
-
 int main() {
-    ld x1=0,x;
-    cin>>x;
-    for(ll i=0;i<1e+3;++i){
-        x1=x-function(x)/function_d(x);
-        if(abs(function(x1))<1e-5){
-            cout<<x1;
-            return 0;
-        }
-        if(abs(function_d(x))<1e-5){
-            cout<<"-1-";
-            return 0;
-        }
-        x=x1;
+    ll x1,x2,y1,y2;
+    ll o1,o2,r;
+    cin>>x1>>y1>>x2>>y2;
+    cin>>o1>>o2>>r;
+    ll A,B,C;
+    A-=pow((x2-x1),2)+pow((y2-y1),2);
+    B=2*((x2-x1)*(x1-o1)+(y2-y1)*(y1-o2));
+    C=pow((x1-o1),2)+pow((y1-o2),2)-pow(r,2);
+    ll D=pow(B,2)-4*A*C;
+    if(D<0)cout<<"No roots";
+    else if(D==0)cout<<(-1)*(B/(2*A));
+    else if(D>0){
+        cout<<(((-1)*B)-D)/(2*A)<<endl;
+        cout<<(((-1)*B)+D)/(2*A);
     }
+    
     return 0;
 }
