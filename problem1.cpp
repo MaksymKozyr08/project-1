@@ -1,38 +1,32 @@
 #include <iostream>
-#include <sstream>
 #include <vector>
-#include <algorithm>
-#include <cmath>
-typedef long long ll;
-typedef long double ld;
-typedef unsigned long long ull;
-
-#define maxll 9223372036854775807
-#define maxint 2147483647
-
 using namespace std;
-void permutation(vector<ll> &a){
-    for(ll i=0;i<a.size();++i){
-        for(ll j=0;j<a.size();++j){
-            if(a[i]!=j && a[j]!=i){
-                ll c=a[j];
-                a[j]=a[i];
-                a[i]=c;
-            }
+bool check(const vector<int>&a){
+    for(int i=0;i<a.size();i++){
+        if(a[i]==i+1)return false;
+    }
+    return true;
+}
+void newpermutations(vector<int>&a,int l,int r){
+    if(l==a.size()){
+        if(check(a)){
+            cout<<"result:";
+            for(int x:a)cout<<x<<" ";
+            cout<<"\n";
         }
+        return;
+    }
+    for(int i=l;i<a.size();i++){
+        swap(a[l],a[i]);
+        newpermutations(a,l+1,a.size());
+        swap(a[l],a[i]);
     }
 }
-
-int main() {
-    ll n;
+int main(){
+    int n;
     cin>>n;
-    vector<ll> a(n);
-    for(ll i=0;i<n;++i){
-        cin>>a[i];
-    }
-    permutation(a);
-    for(ll x : a){
-        cout << x << " ";
-    }
+    vector<int>a(n);
+    for(int i=0;i<n;i++)a[i]=i+1;
+    newpermutations(a,0,n);
     return 0;
 }
