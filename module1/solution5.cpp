@@ -1,18 +1,3 @@
-#include <string>
-#include <vector>
-#include <algorithm>
-#include <cmath>
-#include <cstdlib>
-#include <ctime>
-#include <iomanip>
-#include <fstream>
-#include <sstream>
-#include <map>
-#include <set>
-#include <queue>
-#include <stack>
-#include <deque>
-#include <list>
 #include <iostream>
 
 typedef long long ll;
@@ -24,25 +9,20 @@ int main() {
     cin.tie(0);
     cout.tie(0);
     
-    ll b;
-    cin>>b;
-    ll t=b;
-    ll a=b*b;
-    ll r=b;
-    ll check=0;
-    for(ll i=0;r!=0;++i){
-        check=(check*10)+(a%10);
-        a=a/10;
-        r=r/10;
+    ll n;
+    cin>>n;
+    ll k=0;
+    bool even=(n%2==0);
+    for (ll p=3;p<=n;p*=3){
+        ll total=n/p;
+        ll even_mult=n/(2*p);
+        if(even){
+            k=k+even_mult;
+        } 
+        else{
+            k=k+total-even_mult;
+        }
     }
-    ll p=0;
-    for(ll i=0;check!=0;){
-        p=(p*10)+(check%10);
-        check=check/10;
-    }
-    if(p==t)cout<<1;
-    else{
-        cout<<0;
-    }
+    cout << k;
     return 0;
 }
