@@ -1,23 +1,24 @@
-#include <cmath>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
 double calculateSum(double epsilon) {
     double sum = 0.0;
-    int k = 0; 
-    double currentTerm = 1.0;
+    int k = 0;
+    double currentTerm = 1.0;  // При k=0: (-2)^0 / 0! = 1 / 1 = 1
     double factorialK = 1.0;
-    int sign = 1;
+    double powerOf2 = 1.0;     // (-2)^k
     
     while (true) {
         sum += currentTerm;
         
         k++;
         factorialK *= k;
-        sign = -sign;
-        double nextTerm = sign * (k + 1) / factorialK;
+        powerOf2 *= (-2);
+        double nextTerm = powerOf2 / factorialK;
+        
         if (fabs(nextTerm) < epsilon) {
             break;
         }

@@ -1,13 +1,13 @@
-#include <cmath>
-#include <iomanip>
 #include <iostream>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
 double calculateSum(double epsilon) {
     double sum = 0.0;
-    int k = 0; 
-    double currentTerm = 1.0;
+    int k = 0;
+    double currentTerm = 0.0;  // При k=0: (-1)^0 * 0^2 / 0! = 0
     double factorialK = 1.0;
     int sign = 1;
     
@@ -17,7 +17,8 @@ double calculateSum(double epsilon) {
         k++;
         factorialK *= k;
         sign = -sign;
-        double nextTerm = sign * (k + 1) / factorialK;
+        double nextTerm = sign * (k * k) / factorialK;
+        
         if (fabs(nextTerm) < epsilon) {
             break;
         }
