@@ -38,3 +38,35 @@ int main() {
     
     return 0;
 }
+
+/*
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    double eps;
+    cin >> eps; // точність ε
+
+    double prod = 1.0;
+    int n = 1;
+    double prev = 0.0;
+
+    while (fabs(prod - prev) > eps || n == 1) {
+        prev = prod;
+        prod *= (4.0 * n * n) / ((2.0 * n - 1) * (2.0 * n + 1));
+        n++;
+    }
+
+    cout << fixed << setprecision(10);
+    cout << "Result ≈ " << prod << "\n";
+    cout << "π/2 = " << 3.14159265358979323846 / 2 << "\n";
+    cout << "Iterations = " << n << "\n";
+
+    return 0;
+}
+*/
