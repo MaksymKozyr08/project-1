@@ -17,7 +17,7 @@ bool gt(string &s,ll a,ll b){
 int main() {
     string s;
     getline(cin,s);
-    ll k=0,a=0;
+    ll a=0;
     for(ll i=0;i<=s.size();i++){
         if(s[i]==' ' || i==s.size()){
             if(i>a && gt(s,a,i)){
