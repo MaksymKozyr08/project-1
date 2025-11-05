@@ -1,23 +1,16 @@
 #include <iostream>
 #include <cmath>
+#include <utility>
 #include <vector>
 #include <algorithm>
 using namespace std;
-
 typedef long long ll;
+
+
 int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(0);
     cout.tie(0);
-    ll n;
-    cin >> n;
-    vector<ll> a;
-    for(ll i=1;i<n;i=i*2){
-        for(ll j=1;i*j<n;j=j*3){
-            a.push_back(i*j);
-        }
-    }
-    sort(a.begin(),a.end());
-    for(ll i:a)cout<<i<<" ";
+    
     return 0;
 }
