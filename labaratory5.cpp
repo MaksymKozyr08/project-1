@@ -20,7 +20,7 @@ bool left(const string &s){
     return(s!="_" && s!="^");
 }
 
-vector<string> tokenize(const string &s) {
+vector<string> tokenize(const string &s){
     vector<string> t;
     for(ll i=0;i<s.size(); ){
         if (isdigit(s[i])){
@@ -46,11 +46,11 @@ vector<string> tokenize(const string &s) {
     return t;
 }
 
-vector<string> ETPN(const vector<string>& t) {
+vector<string> ETPN(const vector<string>& t){
     vector<string> out;
     stack<string> st;
-    for(auto &x : t) {
-        if(isdigit(x[0])) {
+    for(auto &x : t){
+        if(isdigit(x[0])){
             out.push_back(x);
         } 
         else if(x=="(")st.push(x);
