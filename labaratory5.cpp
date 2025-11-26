@@ -5,7 +5,6 @@
 #include <cctype>
 #include <math.h>
 using namespace std;
-
 typedef long long ll;
 
 ll priority(const string &s){
@@ -76,7 +75,6 @@ vector<string> ETPN(const vector<string>& t){
     }
     return out;
 }
-
 ll eval(const vector<string>& t) {
     stack<ll> st;
     for(auto &x : t){

@@ -1,82 +1,47 @@
+#include <iostream>
 #include <cstdio>
-#include <cstring>
 #include <vector>
 #include <string>
 
+using namespace std;
+typedef long long ll;
+
 int main() {
-    FILE* f = fopen("text.txt", "r");
-    if (!f) return 1;
-
-    char word[1000];
-    std::vector<std::string> words;
-
-    // Зчитування всіх слів
-    while (fscanf(f, "%99s", word) == 1) {
-        words.push_back(word);
+    FILE* file=fopen("text.txt", "r");
+    if(!file)return 1;
+    vector<string> words;
+    char buffer[1000];
+    while(fscanf(file,"%s",buffer)!=EOF){
+        words.push_back(string(buffer));
     }
-    fclose(f);
-
-    const int WIDTH = 20; // Максимальна ширина рядка
-    std::vector<std::vector<std::string>> lines;
-    std::vector<int> lineLengths;
-
-    // Формування рядків по ширині
-    {
-        std::vector<std::string> current;
-        int currentLen = 0;
-
-        for (auto &w : words) {
-            int wlen = w.size();
-
-            if (current.empty()) { // перше слово в рядку
-                current.push_back(w);
-                currentLen = wlen;
+    fclose(file);
+    vector<string> line;
+    ll currentLen=0;
+    const ll MAX_W=100;
+    for(ll i=0;i<words.size();i++){
+        string w=words[i];
+        if(currentLen+line.size()+w.length()>MAX_W){
+            ll totalSpaces=MAX_W-currentLen;
+            ll gaps=line.size()-1;
+            for(ll j=0;j<line.size();j++){
+                cout<<line[j];
+                if(j<gaps){
+                    ll spacesToAdd=(totalSpaces/gaps)+(j<(totalSpaces%gaps)?1:0);
+                    for(ll k=0;k<spacesToAdd;k++)cout<<" ";
+                }
             }
-            else if (currentLen + 1 + wlen <= WIDTH) {
-                current.push_back(w);
-                currentLen += 1 + wlen; // + пробіл між словами
-            }
-            else {
-                lines.push_back(current);
-                lineLengths.push_back(currentLen);
-                current.clear();
-                current.push_back(w);
-                currentLen = wlen;
-            }
+            cout<<endl;
+            line.clear();
+            currentLen=0;
         }
-
-        if (!current.empty()) {
-            lines.push_back(current);
-            lineLengths.push_back(currentLen);
-        }
+        line.push_back(w);
+        currentLen+=w.length();
     }
-
-    // Вирівнювання та вивід
-    for (int i = 0; i < lines.size(); i++) {
-        auto &line = lines[i];
-        int len = 0;
-
-        for (auto &w : line) len += w.size();
-
-        int gaps = line.size() - 1;
-        int spaces = WIDTH - len;
-
-        // Якщо в рядку одне слово — просто виводимо
-        if (gaps <= 0) {
-            printf("%s\n", line[0].c_str());
-            continue;
+    if(!line.empty()){
+        for(size_t j=0;j<line.size();j++){
+            cout<<line[j]<<(j<line.size()-1?" ":"");
         }
-
-        for (int j = 0; j < line.size(); j++) {
-            printf("%s", line[j].c_str());
-
-            if (j < gaps) {
-                int extra = spaces / gaps + (j < spaces % gaps);
-                for (int s = 0; s < extra; s++) printf(" ");
-            }
-        }
-        printf("\n");
+        cout<<endl;
     }
-
     return 0;
 }
