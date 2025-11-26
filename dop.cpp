@@ -16,7 +16,7 @@ int main() {
     }
     fclose(f);
 
-    const int WIDTH = 40; // Максимальна ширина рядка
+    const int WIDTH = 20; // Максимальна ширина рядка
     std::vector<std::vector<std::string>> lines;
     std::vector<int> lineLengths;
 
