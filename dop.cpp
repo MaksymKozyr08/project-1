@@ -17,7 +17,7 @@ int main() {
     fclose(file);
     vector<string> line;
     ll currentLen=0;
-    const ll MAX_W=100;
+    const ll MAX_W=30;
     for(ll i=0;i<words.size();i++){
         string w=words[i];
         if(currentLen+line.size()+w.length()>MAX_W){

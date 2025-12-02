@@ -6,7 +6,7 @@
 #include <math.h>
 using namespace std;
 typedef long long ll;
-
+typedef long double ld;
 ll priority(const string &s){
     if (s=="_")return 3;
     if (s=="^")return 3;
@@ -75,21 +75,21 @@ vector<string> ETPN(const vector<string>& t){
     }
     return out;
 }
-ll eval(const vector<string>& t) {
-    stack<ll> st;
+ld eval(const vector<string>& t) {
+    stack<ld> st;
     for(auto &x : t){
         if(isdigit(x[0])){
             st.push(stoi(x));
         }
         else if(x=="_"){
-            ll a=st.top(); 
+            ld a=st.top(); 
             st.pop();
             st.push(-a);
         }
         else {
-            ll b=st.top();
+            ld b=st.top();
             st.pop();
-            ll a=st.top();
+            ld a=st.top();
             st.pop();
             if(x=="+")st.push(a+b);
             else if(x=="-")st.push(a-b);
