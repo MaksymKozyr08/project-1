@@ -1,23 +1,23 @@
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
 
 int main(){
     int n;
-    printf("Enter n: ");
-    scanf("%d",&n);
+    std::cout<<"Enter n: ";
+    std::cin>>n;
     int** mat=new int*[n];
     long long** dp=new long long*[n];
     for(int i=0;i<n;i++){
         mat[i]=new int[n];
         dp[i]=new long long[n];
         for(int j=0;j<n;j++){
-            mat[i][j]=rand()%2;
+            mat[i][j]=std::rand()%2;
             dp[i][j]=0;
         }
     }
     for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++)printf("%d ",mat[i][j]);
-        printf("\n");
+        for(int j=0;j<n;j++)std::cout<<mat[i][j]<<" ";
+        std::cout<<"\n";
     }
     if(mat[0][0]==1)dp[0][0]=1;
     for(int i=0;i<n;i++){
@@ -28,7 +28,7 @@ int main(){
             } else dp[i][j]=0;
         }
     }
-    printf("Paths: %lld\n",dp[n-1][n-1]);
+    std::cout<<"Paths: "<<dp[n-1][n-1]<<"\n";
     for(int i=0;i<n;i++){delete[] mat[i];delete[] dp[i];}
     delete[] mat;delete[] dp;
     return 0;

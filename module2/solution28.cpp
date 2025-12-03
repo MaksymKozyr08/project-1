@@ -1,10 +1,10 @@
-#include <cstdio>
+#include <iostream>
 
 void subEven(int start,int k,int n,int evens,int target,int* arr,int len){
     if(k==0){
         if(evens==target){
-            for(int i=0;i<len;i++)printf("%d ",arr[i]);
-            printf("\n");
+            for(int i=0;i<len;i++)std::cout<<arr[i]<<" ";
+            std::cout<<"\n";
         }
         return;
     }
@@ -19,8 +19,8 @@ void subEven(int start,int k,int n,int evens,int target,int* arr,int len){
 
 int main(){
     int N,K;
-    printf("Enter N K: ");
-    scanf("%d%d",&N,&K);
+    std::cout<<"Enter N K: ";
+    std::cin>>N>>K;
     int* arr=new int[K];
     subEven(1,K,N,0,K/2,arr,0);
     delete[] arr;

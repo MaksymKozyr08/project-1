@@ -1,47 +1,22 @@
-#include <iostream>
 #include <cstdio>
 #include <vector>
-#include <string>
-
 using namespace std;
-typedef long long ll;
-
-int main() {
-    FILE* file=fopen("text.txt", "r");
-    if(!file)return 1;
-    vector<string> words;
-    char buffer[1000];
-    while(fscanf(file,"%s",buffer)!=EOF){
-        words.push_back(string(buffer));
+typedef long long ll ;
+int main(){
+    FILE* f=fopen("taxt.txt","r");
+    if(!f)return 0;
+    int n;
+    vector<ll> a(n);
+    for(ll i=0;i<n;++i){
+        fscanf(f,"%d",&a);
     }
-    fclose(file);
-    vector<string> line;
-    ll currentLen=0;
-    const ll MAX_W=30;
-    for(ll i=0;i<words.size();i++){
-        string w=words[i];
-        if(currentLen+line.size()+w.length()>MAX_W){
-            ll totalSpaces=MAX_W-currentLen;
-            ll gaps=line.size()-1;
-            for(ll j=0;j<line.size();j++){
-                cout<<line[j];
-                if(j<gaps){
-                    ll spacesToAdd=(totalSpaces/gaps)+(j<(totalSpaces%gaps)?1:0);
-                    for(ll k=0;k<spacesToAdd;k++)cout<<" ";
-                }
-            }
-            cout<<endl;
-            line.clear();
-            currentLen=0;
+    fclose(f);
+    ll max=a[n-1];
+    for(ll i=n-2;i>=0;i--){
+        if(a[i]>max){
+            max=a[i];
+            printf("%d",a[i]);
         }
-        line.push_back(w);
-        currentLen+=w.length();
-    }
-    if(!line.empty()){
-        for(size_t j=0;j<line.size();j++){
-            cout<<line[j]<<(j<line.size()-1?" ":"");
-        }
-        cout<<endl;
     }
     return 0;
 }

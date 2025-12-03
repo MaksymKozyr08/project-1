@@ -14,7 +14,7 @@ int main() {
     while(fgets(buffer,sizeof(buffer),in)){
         string line=buffer;
         size_t pos=line.find("//");
-        if(pos!=string::npos){
+        if(pos!=-1){
             string comment = line.substr(pos + 2);
             fputs(comment.c_str(), out);
         }

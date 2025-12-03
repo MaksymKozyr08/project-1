@@ -1,16 +1,15 @@
-#include <cstdio>
-#include <cstdlib>
+#include <iostream>
 #include <cmath>
 
 void perm(int* p,int* used,int n,int k,int len){
     if(len==n){
-        for(int i=0;i<n;i++)printf("%d ",p[i]);
-        printf("\n");
+        for(int i=0;i<n;i++)std::cout<<p[i]<<" ";
+        std::cout<<"\n";
         return;
     }
     for(int i=1;i<=n;i++){
         if(!used[i]){
-            if(len==0||abs(p[len-1]-i)<=k){
+            if(len==0||std::abs(p[len-1]-i)<=k){
                 used[i]=1;
                 p[len]=i;
                 perm(p,used,n,k,len+1);
@@ -22,8 +21,8 @@ void perm(int* p,int* used,int n,int k,int len){
 
 int main(){
     int n,k;
-    printf("Enter n k: ");
-    scanf("%d%d",&n,&k);
+    std::cout<<"Enter n k: ";
+    std::cin>>n>>k;
     int* p=new int[n];
     int* used=new int[n+1];
     for(int i=0;i<=n;i++)used[i]=0;

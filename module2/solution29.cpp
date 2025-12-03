@@ -1,10 +1,10 @@
-#include <cstdio>
+#include <iostream>
 
 void subEvenMin(int start,int k,int n,int evens,int min_ev,int* arr,int len){
     if(k==0){
         if(evens>=min_ev){
-            for(int i=0;i<len;i++)printf("%d ",arr[i]);
-            printf("\n");
+            for(int i=0;i<len;i++)std::cout<<arr[i]<<" ";
+            std::cout<<"\n";
         }
         return;
     }
@@ -16,8 +16,8 @@ void subEvenMin(int start,int k,int n,int evens,int min_ev,int* arr,int len){
 
 int main(){
     int N,K;
-    printf("Enter N K: ");
-    scanf("%d%d",&N,&K);
+    std::cout<<"Enter N K: ";
+    std::cin>>N>>K;
     int* arr=new int[K];
     subEvenMin(1,K,N,0,K/2,arr,0);
     delete[] arr;

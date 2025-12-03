@@ -1,4 +1,4 @@
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
 
 int N_sz;
@@ -11,16 +11,16 @@ int dfs(int r,int c){
 }
 
 int main(){
-    printf("Enter n: ");
-    scanf("%d",&N_sz);
+    std::cout<<"Enter n: ";
+    std::cin>>N_sz;
     mat=new int*[N_sz];
     for(int i=0;i<N_sz;i++){
         mat[i]=new int[N_sz];
-        for(int j=0;j<N_sz;j++)mat[i][j]=rand()%2;
+        for(int j=0;j<N_sz;j++)mat[i][j]=std::rand()%2;
     }
     for(int i=0;i<N_sz;i++){
-        for(int j=0;j<N_sz;j++)printf("%d ",mat[i][j]);
-        printf("\n");
+        for(int j=0;j<N_sz;j++)std::cout<<mat[i][j]<<" ";
+        std::cout<<"\n";
     }
     int max_area=0;
     for(int i=0;i<N_sz;i++){
@@ -31,7 +31,7 @@ int main(){
             }
         }
     }
-    printf("Max area: %d\n",max_area);
+    std::cout<<"Max area: "<<max_area<<"\n";
     for(int i=0;i<N_sz;i++)delete[] mat[i];
     delete[] mat;
     return 0;

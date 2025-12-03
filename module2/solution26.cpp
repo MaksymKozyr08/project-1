@@ -1,9 +1,9 @@
-#include <cstdio>
+#include <iostream>
 
 void seq(int k,int n,int* arr,int len){
     if(k==0){
-        for(int i=0;i<len;i++)printf("%d ",arr[i]);
-        printf("\n");
+        for(int i=0;i<len;i++)std::cout<<arr[i]<<" ";
+        std::cout<<"\n";
         return;
     }
     int start=(len==0)?1:(arr[len-1]*2);
@@ -16,8 +16,8 @@ void seq(int k,int n,int* arr,int len){
 
 int main(){
     int N,K;
-    printf("Enter N K: ");
-    scanf("%d%d",&N,&K);
+    std::cout<<"Enter N K: ";
+    std::cin>>N>>K;
     int* arr=new int[K];
     seq(K,N,arr,0);
     delete[] arr;

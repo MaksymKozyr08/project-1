@@ -1,23 +1,26 @@
-#include <cstdio>
+#include <iostream>
 #include <cstdlib>
 
 struct Point{int r,c;};
 
 int main(){
     int n;
-    printf("Enter n: ");
-    scanf("%d",&n);
+    std::cout<<"Enter n: ";
+    std::cin>>n;
     int** mat=new int*[n];
     for(int i=0;i<n;i++){
         mat[i]=new int[n];
-        for(int j=0;j<n;j++)mat[i][j]=rand()%2;
+        for(int j=0;j<n;j++)mat[i][j]=std::rand()%2;
     }
     for(int i=0;i<n;i++){
-        for(int j=0;j<n;j++)printf("%d ",mat[i][j]);
-        printf("\n");
+        for(int j=0;j<n;j++)std::cout<<mat[i][j]<<" ";
+        std::cout<<"\n";
     }
     if(mat[0][0]==0||mat[n-1][n-1]==0){
-        printf("No path\n");return 0;
+        std::cout<<"No path\n";
+        for(int i=0;i<n;i++)delete[] mat[i];
+        delete[] mat;
+        return 0;
     }
     Point* q=new Point[n*n];
     int head=0,tail=0;
@@ -49,10 +52,13 @@ int main(){
     if(found){
         Point curr={n-1,n-1};
         while(curr.r!=0||curr.c!=0){
-            printf("(%d,%d)<-",curr.r,curr.c);
+            std::cout<<"("<<curr.r<<","<<curr.c<<")<-";
             curr=p[curr.r][curr.c];
         }
-        printf("(0,0)\n");
-    } else printf("No path\n");
+        std::cout<<"(0,0)\n";
+    } else std::cout<<"No path\n";
+    delete[] q;
+    for(int i=0;i<n;i++){delete[] mat[i];delete[] dist[i];delete[] p[i];}
+    delete[] mat;delete[] dist;delete[] p;
     return 0;
 }

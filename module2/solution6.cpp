@@ -2,7 +2,7 @@
 #include <cstdlib>
 
 void create(int n, int k) {
-    FILE *f = fopen("matrix.txt", "w");
+    FILE *f=fopen("matrix.txt", "w");
     if(!f)return;
     for(int i=0;i<n;i++){
         for(int j=0;j<k;j++){
@@ -15,9 +15,9 @@ void create(int n, int k) {
 }
 
 void process(int n,int k){
-    FILE *f = fopen("matrix.txt", "r");
-    if (!f) return;
-    int *sum = new int[k] {};
+    FILE *f=fopen("matrix.txt", "r");
+    if(!f)return;
+    int *sum=new int[k] {};
     int x;
     for(int i=0;i<n;i++){
         for(int j=0;j<k;j++){
@@ -37,4 +37,5 @@ int main(){
     scanf("%d %d", &n, &k);
     create(n, k);
     process(n, k);
+    return 0;
 }
