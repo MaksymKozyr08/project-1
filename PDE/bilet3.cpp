@@ -7,12 +7,13 @@ typedef long double ld;
 using namespace std;
 
 bool sum_diln_check(ll n){
-    ll sum=0;
-    for(ll i=1;i*i<=n;++i){
+    ll sum=1;
+    if (n <= 1) return false;
+    for(ll i=2;i*i<=n;++i){
         if(n%i==0){
-            if(i*i<n)sum=sum+n/i;
+            if(i*i<n)sum=sum+n/i+i;
             else{
-                sum=sum+n/i+i;
+                sum=sum+n/i;
             }
         }
     }
